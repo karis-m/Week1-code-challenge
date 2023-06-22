@@ -3,10 +3,14 @@ function netSalary(){
     // Input of the basic salary and  all benefits
     let basicSalary = prompt("Enter your basic salary:");
     let benefits = prompt("Enter your total allowances:");
+    // change the string to integer
+    let bS = Number(basicSalary);
+    let b = Number(benefits);
     const personalRelief = 2400;
     let tax;
     //Calculate total taxable income
-    const taxablePay = basicSalary + benefits;
+    let taxablePay = bS + b;
+    console.log("Taxabl income:", taxablePay);
     //Checks the tax category of the employee salary and calculates the PAYE.
     const PAYE = function CalculateTax(){
         if(taxablePay <= 24000){
@@ -23,6 +27,7 @@ function netSalary(){
         }
 
     }
+    console.log("PAYE", PAYE)
     
 //function to determine NHIF contribution
     function calculateNHIF(){
@@ -77,11 +82,11 @@ function netSalary(){
         else{
             return 1700;
         }
-        
     }
     // the old NSSF Act stipulates a standard charge of 400 per employee.
     let nssfContribution = 400;
     let NHIF = calculateNHIF();
+    console.log("NHIF", NHIF);
     //Total Deductions is as follows
     let netSalaryPay = taxablePay - (PAYE + NHIF + nssfContribution); 
     console.log(netSalaryPay);
