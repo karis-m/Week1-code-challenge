@@ -10,11 +10,11 @@ function netSalary(){
     let tax;
     //Calculate total taxable income
     let taxablePay = bS + b;
-    console.log("Taxabl income:", taxablePay);
+    console.log("Taxable income:", taxablePay);
     //Checks the tax category of the employee salary and calculates the PAYE.
-    const PAYE = function CalculateTax(){
-        if(taxablePay <= 24000){
-            tax = taxablePay * 0.1 - personalRelief;
+    function CalculateTax(){
+        if(taxablePay < 24000){
+            tax = taxablePay * 0.1 - Number(personalRelief)
             return tax;
         }
         else if(taxablePay > 24000 && taxablePay < 32,333){
@@ -27,7 +27,7 @@ function netSalary(){
         }
 
     }
-    console.log("PAYE", PAYE)
+    console.log("PAYE", CalculateTax());
     
 //function to determine NHIF contribution
     function calculateNHIF(){
@@ -85,10 +85,11 @@ function netSalary(){
     }
     // the old NSSF Act stipulates a standard charge of 400 per employee.
     let nssfContribution = 400;
+    console.log("NSSF:", nssfContribution)
     let NHIF = calculateNHIF();
-    console.log("NHIF", NHIF);
+    console.log("NHIF:", NHIF);
     //Total Deductions is as follows
-    let netSalaryPay = taxablePay - (PAYE + NHIF + nssfContribution); 
-    console.log(netSalaryPay);
+    let netSalaryPay = taxablePay - (CalculateTax() + NHIF + nssfContribution); 
+    console.log("Net Salary: ", netSalaryPay);
     
 }
